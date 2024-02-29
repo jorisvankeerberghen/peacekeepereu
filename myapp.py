@@ -2,15 +2,15 @@ import streamlit as st
 
 # Define a function for each of your pages
 def home_page():
-    st.title("Home Page")
+    st.title("EU Peace Keeper Project")
     st.write("Welcome to the home page!")
 
 def page1():
-    st.title("Page 1")
+    st.title("Analyse des données")
     st.write("This is page 1.")
 
 def page2():
-    st.title("Page 2")
+    st.title("Travel authorisation")
     st.write("This is page 2.")
 
 def page3():
@@ -23,14 +23,14 @@ def page4():
 
 # Use a sidebar for navigation between pages
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ('Home', 'Page 1', 'Page 2', 'Page 3', 'Page 4'))
+page = st.sidebar.radio("Go to", ('Home', 'Analyse des données', 'Travel authorisation', 'Page 3', 'Page 4'))
 
 # Display the selected page with the radio buttons
 if page == 'Home':
     home_page()
-elif page == 'Page 1':
+elif page == 'Analyse des données':
     page1()
-elif page == 'Page 2':
+elif page == 'Travel authorisation':
     page2()
 elif page == 'Page 3':
     page3()
