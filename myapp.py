@@ -6,6 +6,7 @@ from TravelAuth import initiate_model
 def home_page():
     st.title("EU Peace Keeper Project")
     st.write("Welcome to the home page!")
+    print(f"hello")
 
 def page1():
     st.title("Analyse des données")

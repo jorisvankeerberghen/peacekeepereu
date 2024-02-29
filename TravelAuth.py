@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 def display_form():
     with st.form("form1"):
         username = st.text_input("Enter your name")
