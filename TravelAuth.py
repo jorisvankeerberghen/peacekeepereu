@@ -8,3 +8,4 @@ def display_form():
 
     if submitted:
         st.write(f"Hello {username}, you are {user_age} years old.")
+        st.write(f"Entry to Schengen Zone is REFUSED")
