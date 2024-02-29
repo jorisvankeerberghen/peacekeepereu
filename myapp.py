@@ -1,5 +1,6 @@
 import streamlit as st
-from TravelAuth import display_form initiate_model
+from TravelAuth import display_form 
+from TravelAuth import initiate_model 
 
 # Define a function for each of your pages
 def home_page():
