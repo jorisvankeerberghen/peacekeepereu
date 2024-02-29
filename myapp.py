@@ -1,5 +1,5 @@
 import streamlit as st
-from TravelAuth import display_form
+from TravelAuth import display_form initiate_model
 
 # Define a function for each of your pages
 def home_page():
@@ -12,7 +12,13 @@ def page1():
 
 def page2():
     st.title("Travel authorisation")
-    st.write("This is page 2.")
+    st.write("Initiate the risk model")
+    if st.button('Perform Calculation'):
+        # Call the function
+        result = initiate_model()
+        # Display the result
+        st.write(result)
+
     display_form()
 
 def page3():
