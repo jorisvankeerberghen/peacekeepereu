@@ -14,13 +14,6 @@ def page1():
 
 def page2():
     st.title("Travel authorisation")
-    st.write("Initiate the risk model")
-    if st.button('Perform Calculation'):
-        # Call the function
-        result = initiate_model()
-        # Display the result
-        st.write(result)
-
     display_form()
 
 def page3():
