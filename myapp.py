@@ -1,4 +1,5 @@
 import streamlit as st
+from TravelAuth import display_form
 
 # Define a function for each of your pages
 def home_page():
@@ -12,6 +13,7 @@ def page1():
 def page2():
     st.title("Travel authorisation")
     st.write("This is page 2.")
+    display_form()
 
 def page3():
     st.title("Page 3")
