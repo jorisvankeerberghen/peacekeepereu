@@ -13,7 +13,7 @@ def page1():
     st.write("This is page 1.")
 
 def page2():
-    st.title("Travel authorisation")
+    st.title("Travel Authorisation Form")
     display_form()
 
 def page3():

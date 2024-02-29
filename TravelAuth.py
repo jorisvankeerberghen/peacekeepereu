@@ -36,8 +36,8 @@ def display_form():
  'Tanzania', 'Thailand', 'Togo', 'Tunisia', 'Turkmenistan' ,'Uganda', 'Ukraine',
  'United Arab Emirates', 'United Kingdom', 'United States' ,'Uruguay',
  'Uzbekistan' ,'Vanuatu' ,'Venezuela' ,'Vietnam' ,'Yemen' ,'Zambia', 'Zimbabwe'))
-        country = st.selectbox('Travel to:',('AT', 'BE', 'CH', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI', 'FR', 'GR', 'HU', 'IS', 'IT',
- 'LT', 'LU', 'LV', 'MT', 'NL', 'NO', 'PL', 'PT', 'SE', 'SI', 'SK'))
+        country = st.selectbox('Travel to:',('Austria', 'Belgium', 'Switzerland', 'Cech Republic', 'Germany', 'Denmark', 'Estonia', 'Spain', 'Finland', 'France', 'Greece', 'Hungary', 'Island', 'Italy',
+ 'Lithuania', 'Luxembourg', 'Latvia', 'Malta', 'Netherlands', 'Norway', 'Poland', 'Portugal', 'Sweden', 'Slovenia', 'Slovakia'))
         user_age = st.number_input("Enter your age", min_value=0, max_value=100, step=1)
         submitted = st.form_submit_button("Submit")
 
