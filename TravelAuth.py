@@ -2,7 +2,7 @@ import streamlit as st
 
 def display_form():
     with st.form("form1"):
-        name = st.text_input("Enter your name")
+        name = st.text_input("Enter your name:")
         gender = st.selectbox('Gender:',('Male', 'Female'))
         nationality = st.selectbox ('Nationality:',('Afghanistan', 'Aland Islands', 'Albania' ,'American Samoa', 'Andorra'
  'Angola', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Australia',
