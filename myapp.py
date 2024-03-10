@@ -1,6 +1,5 @@
 import streamlit as st
 from TravelAuth import display_form 
-from TravelAuth import initiate_model 
 from PIL import Image
 
 # Define a function for each of your pages
