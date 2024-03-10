@@ -6,9 +6,10 @@ from PIL import Image
 # Define a function for each of your pages
 def home_page():
     st.title("EU Peace Keeper Project")
+    image_url = "https://i.ibb.co/gdw5kz4/PK2.jpg"
     #st.write("Welcome to the home page!")
-    img = Image.open(".\images\PK2.jpg")
-    st.image(img)
+    #img = Image.open(".\images\PK2.jpg")
+    st.image(image_url)
 
 def page1():
     st.title("Analyse des données")
