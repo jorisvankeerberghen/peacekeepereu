@@ -2,3 +2,4 @@
 myapp.py.txt
 *.pyc
 __pycache__/TravelAuth.cpython-311.pyc
+*.cpython
