@@ -2,4 +2,4 @@ streamlit
 pandas
 joblib
 requests
-tensorflow
+tensorflow==2.15.1
