@@ -1,6 +1,5 @@
 streamlit
 pandas
 joblib
-tempfile
 requests
 tensorflow
