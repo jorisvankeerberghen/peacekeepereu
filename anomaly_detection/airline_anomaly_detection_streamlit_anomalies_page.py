@@ -3,26 +3,30 @@ import pandas as pd
 import plotly.express as px
 import time
 import sys
+import os
+
+#Get the directory containing the script
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
 def show():
 
     #Display the results of anomalies detection in a streamlit page
     #Multiple charts are displayed
 
-    file_path = 'airline_anomalies_dataset.csv'
+    file_path = os.path.join(script_dir, 'airline_anomalies_dataset.csv')
     df = pd.read_csv(file_path)
 
     #print(df.head())
     #sys.exit("Stopping")
 
     #Set up the title of the page
-    st.header("Détection d'anomalies dans les vols de passagers sur 3 ans")
+    st.subheader("Detection of anomalies in flights over the last 3 years")
     st.markdown("<br>", unsafe_allow_html=True)
 
     #When the button is clicked
-    if st.button("Détecter les anomalies"):
+    if st.button("Detect anomalies"):
 
-        progress_text = "Détection en cours..."
+        progress_text = "Detecting..."
         progbar = st.progress(0, text=progress_text)
 
         for percent_complete in range(100):
@@ -62,7 +66,7 @@ def show():
         gender_count.columns = ['Gender', 'count']
 
         #Mapping original values to desired labels
-        gender_labels = {'Male': 'Homme', 'Female': 'Femme'}
+        gender_labels = {'Male': 'Male', 'Female': 'Female'}
         gender_count['Gender'] = gender_count['Gender'].map(gender_labels)
 
         #Generate the pie chart
@@ -70,16 +74,16 @@ def show():
 
         #Update the chart with custom styles
         gender_fig.update_layout(
-            title_text='Répartition par genre', #Chart title
+            title_text='Gender Distribution', #Chart title
             title_font_size=20,  #Size of the chart title
             paper_bgcolor='rgba(233,233,233,1)',
             margin=dict(l=30, r=30, t=60, b=30),
-            legend_title_text='Genre',  #Legend title
+            legend_title_text='Gender',  #Legend title
             legend_title_font_size=18,  #Size of the legend title
             legend_font_size=18,  #Size of the legend labels,
             legend=dict(orientation="v", x=0, xanchor="left", y=0.2, yanchor="middle"),
             title={
-                'text': 'Répartition par genre',
+                'text': 'Gender Distribution',
                 'y':0.96,
                 'x':0.5,
                 'xanchor': 'center',
@@ -90,7 +94,7 @@ def show():
 
         #Displaying the pie char and the information on number of anomalies side-by-side
         st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown('<p class="big-font">Trouvé 723 vols de passagers atypiques!<br/><span class="medium-font">sur un total de 72418</span></p>', unsafe_allow_html=True)
+        st.markdown('<p class="big-font">Found 723 atypical passenger flights!<br/><span class="medium-font">out of a total of 72418</span></p>', unsafe_allow_html=True)
 
         #Display the pie chart in the Streamlit page
         #gender_fig.update_layout(width=450, height=300)
@@ -119,15 +123,15 @@ def show():
         nationality_fig = px.bar(top_nationalities, x='Nationality', y='Count', color='Nationality')
 
         #Adjusting bar chart appearance
-        nationality_fig.update_layout(xaxis_title="Top 10 des Nationalités",
-                                      yaxis_title="Nombre de passagers",
+        nationality_fig.update_layout(xaxis_title="Top 10 Nationalities",
+                                      yaxis_title="Number of Passenger Flights",
                                       title_font_size=20,
                                       paper_bgcolor='rgba(233,233,233,1)',
                                       margin=dict(l=30, r=30, t=60, b=30),
                                       coloraxis_showscale=False,
                                       showlegend=False,
                                       title={
-                                        'text': 'Répartition par nationalité',
+                                        'text': 'Distribution by Nationality',
                                         'y':0.96,
                                         'x':0.5,
                                         'xanchor': 'center',
@@ -160,15 +164,15 @@ def show():
         country_fig = px.bar(top_countries, x='Country Name', y='Count', color='Country Name')
 
         #Adjusting bar chart appearance
-        country_fig.update_layout(xaxis_title="Top 10 des Pays d'Arrivée",
-                                      yaxis_title="Nombre de passagers",
+        country_fig.update_layout(xaxis_title="Top 10 Countries of Arrival",
+                                      yaxis_title="Number of Passenger Flights",
                                       title_font_size=20,
                                       paper_bgcolor='rgba(233,233,233,1)',
                                       margin=dict(l=30, r=30, t=60, b=30),
                                       coloraxis_showscale=False,
                                       showlegend=False,
                                       title={
-                                        'text': "Répartition par pays d'arrivée",
+                                        'text': "Distribution by Country of Arrival",
                                         'y':0.96,
                                         'x':0.5,
                                         'xanchor': 'center',

@@ -2,35 +2,39 @@ import streamlit as st
 import pandas as pd
 import time
 import sys
+import os
 
 from joblib import load
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import LabelEncoder
 
+#Get the directory containing the script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
 def show():
 
     #Load trained anomaly detection model
-    model = load('model_airline_anomalies_detection.joblib')
+    model = load(os.path.join(script_dir, 'model_airline_anomalies_detection.joblib'))
 
     #Load datasets
-    file_path_anomalies = 'airline_anomalies_dataset.csv'
+    file_path_anomalies = os.path.join(script_dir, 'airline_anomalies_dataset.csv')
     df_anomalies = pd.read_csv(file_path_anomalies)
 
-    file_path_next = 'airline_next_2_days_dataset.csv'
+    file_path_next = os.path.join(script_dir, 'airline_next_2_days_dataset.csv')
     df_next = pd.read_csv(file_path_next)
     df_ml_next = df_next.drop(['Airport Name', 'Country Name', 'First Name', 'Last Name', 'Departure Date'], axis=1)
 
     #Display tabs
-    tab1, tab2 = st.tabs(["A contrôler", "Top passagers atypiques"])
+    tab1, tab2 = st.tabs(["To check", "Atypical passengers"])
 
     with tab1:
 
-        st.header("A contrôler dans les 2 prochain jours")
+        st.subheader("To check in the next 2 days")
         st.markdown("<br>", unsafe_allow_html=True)
 
-        if st.button("Détecter les anomalies"):
+        if st.button("Detect anomalies"):
 
-            progress_text = "Détection en cours..."
+            progress_text = "Detecting..."
             progbar = st.progress(0, text=progress_text)
 
             for percent_complete in range(100):
@@ -68,22 +72,19 @@ def show():
             #Reorder columns
             df_reordered = matched_rows[new_order]
 
-            #Reanme columns in French
-            df_reordered = df_reordered.rename(columns={'Departure Date': 'Date Départ Vol', 'Country Name': 'Pays Arrivée', 'Last Name': 'Nom De Famille', 'First Name': 'Prénom', \
-                'Nationality': 'Nationalité', 'Arrival Airport': 'Aéroport Arrivée', 'Gender': 'Genre', 'Airport Name': 'Nom Aéroport'})
-
             #Display the results table
             st.markdown("<br>", unsafe_allow_html=True)
             st.dataframe(df_reordered)
+ 
 
     with tab2:
 
-        st.header("Passagers les plus atypiques")
+        st.subheader("Main atypical passengers")
         st.markdown("<br>", unsafe_allow_html=True)
+        
+        if st.button("Compiling the results"):
 
-        if st.button("Compiler les résultats"):
-
-            progress_text = "Compilation en cours..."
+            progress_text = "Compiling..."
             progbar = st.progress(0, text=progress_text)
 
             for percent_complete in range(100):
@@ -112,9 +113,6 @@ def show():
             final_results.sort_values(by=['Count Atypique Flights'], ascending=False, inplace=True)
             final_results = final_results.reset_index(drop=True)
 
-            #Rename the columns in French
-            final_results = final_results.rename(columns={'Passenger ID': 'ID Passager', 'Count Atypique Flights': 'Nombre Vols Atypiques', 'Last Name': 'Nom De Famille', 'First Name': 'Prénom', 'Nationality': 'Nationalité'})
-
             #Function to apply color styling to the cells of Joachim
             def colorize(val):
                 if val == 'Joachim' or val == 'Massias' or val == 41:
@@ -128,3 +126,4 @@ def show():
             styled_final_results = final_results.style.applymap(colorize)
             st.markdown("<br>", unsafe_allow_html=True)
             st.table(styled_final_results)
+
